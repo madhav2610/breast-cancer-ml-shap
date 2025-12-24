@@ -1,160 +1,140 @@
 
-
-# 🩺 Breast Cancer Classification using Machine Learning & SHAP
+# 🩺 Breast Cancer Classification using Machine Learning
 
 ## 📌 Project Overview
 
-This project focuses on **binary classification of breast cancer tumors** as **Malignant (M)** or **Benign (B)** using multiple machine learning models.
-The goal is to **maximize recall** (minimize false negatives), which is critical in medical diagnosis.
+This project focuses on the **classification of breast cancer tumors** as **Benign (B)** or **Malignant (M)** using multiple machine learning models.
+The goal is to **compare different classifiers**, tune their hyperparameters, and select the **best-performing model based on recall**, which is critical in medical diagnosis.
 
-In addition to model comparison, **SHAP (SHapley Additive exPlanations)** is used to interpret the best-performing model and understand feature contributions.
+---
+
+## 🎯 Problem Statement
+
+Early and accurate detection of breast cancer significantly improves patient outcomes.
+In this project, machine learning models are trained on diagnostic features to predict whether a tumor is malignant or benign.
+
+Since **false negatives (missing a malignant case)** are dangerous, **recall** is prioritized over accuracy.
+
+---
+
+## 📂 Dataset
+
+* **Source:** Breast Cancer Wisconsin Dataset
+* **Target Variable:** `diagnosis`
+
+  * `B` → Benign (0)
+  * `M` → Malignant (1)
+* **Preprocessing Steps:**
+
+  * Dropped unnecessary columns (`id`, `Unnamed: 32`)
+  * Encoded target labels
+  * Train-test split (80–20)
 
 ---
 
 ## 🧠 Models Implemented
 
-The following models were trained, tuned, and evaluated:
+The following models were trained and evaluated:
 
-* **Logistic Regression** (with Standard Scaling + Hyperparameter Tuning)
-* **Random Forest Classifier**
-* **Support Vector Machine (SVM)** (with Standard Scaling)
-* **AdaBoost Classifier**
-
-Hyperparameter optimization was performed using **RandomizedSearchCV** with **Recall** as the primary scoring metric.
+1. **Logistic Regression**
+2. **Random Forest Classifier**
+3. **Support Vector Machine (SVM)**
+4. **AdaBoost Classifier**
 
 ---
 
-## 📊 Dataset
+## ⚙️ Techniques Used
 
-* **Dataset**: Breast Cancer Wisconsin Dataset
-* **Target Variable**: `diagnosis`
-
-  * `M` → Malignant (1)
-  * `B` → Benign (0)
-* **Preprocessing Steps**:
-
-  * Dropped irrelevant columns: `id`, `Unnamed: 32`
-  * Encoded target labels
-  * Train-test split (80:20)
+* **Pipelines** for models requiring feature scaling
+* **RandomizedSearchCV** for hyperparameter tuning
+* **Recall-based model selection**
+* **Confusion Matrix, Accuracy, and Recall** for evaluation
+* **Matplotlib visualizations** for model comparison
 
 ---
 
-## ⚙️ Technologies & Libraries Used
+## 📊 Evaluation Metrics
 
-* Python 3.x
-* pandas
-* numpy
-* scikit-learn
-* matplotlib
-* SHAP
-
----
-
-## 📈 Model Evaluation Metrics
-
-Each model was evaluated using:
-
-* **Confusion Matrix**
-* **Recall Score** (Primary Metric)
+* **Recall Score (Primary Metric)**
 * **Accuracy Score**
+* **Confusion Matrix**
 
-### 🔎 Model Performance Summary
-
-| Model               | Recall | Accuracy |
-| ------------------- | ------ | -------- |
-| Logistic Regression | 0.95   | 0.93     |
-| Random Forest       | 1.00   | 0.98     |
-| SVM                 | 1.00   | 0.97     |
-| AdaBoost            | 0.98   | 0.99     |
-
-> **Recall was prioritized** to reduce false negatives in cancer detection.
+📌 *Recall is emphasized because failing to detect malignant tumors can have serious consequences.*
 
 ---
 
-## 📉 Visualizations
+## 📈 Results Visualization
 
-* Bar plots comparing **Recall** and **Accuracy** across models
-* Y-axis limited to `[0, 1]` for consistent comparison
+The project generates:
 
----
+* Recall comparison bar chart
+* Accuracy comparison bar chart
 
-## 🔍 Model Explainability with SHAP
+Saved automatically in the `results/` directory:
 
-To interpret model predictions:
-
-* The **best-performing Random Forest model** was selected
-* **SHAP TreeExplainer** was used
-* Generated:
-
-  * SHAP Summary Plot
-  * SHAP Feature Importance (Bar Plot)
-
-### Why SHAP?
-
-SHAP helps explain:
-
-* How each feature contributes to predictions
-* Direction of influence (positive or negative)
-* Feature interactions
-
-This improves **model transparency**, which is essential in healthcare applications.
+* `recall_comparison.png`
+* `accuracy_comparison.png`
 
 ---
 
-## 🚀 How to Run the Project
+## 🏆 Best Model Selection
+
+Models are compared based on **recall score**, and the model with the highest recall is considered the most suitable for this medical classification task i.e Random Forest.
+
+---
+
+## 🛠️ Tech Stack
+
+* Python
+* Pandas, NumPy
+* Scikit-learn
+* Matplotlib
+
+---
+
+## ▶️ How to Run
 
 1. Clone the repository
+2. Install required libraries:
 
-```bash
-git clone https://github.com/your-username/breast-cancer-ml.git
-cd breast-cancer-ml
-```
+   ```bash
+   pip install pandas numpy scikit-learn matplotlib
+   ```
+3. Run the script:
 
-2. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-3. Run the script
-
-```bash
-python script.py
-```
+   ```bash
+   python script.py
+   ```
 
 ---
 
 ## 📌 Project Structure
 
 ```
+Breast_Cancer_project/
+│
 ├── data.csv
 ├── script.py
-├── README.md
-├── requirements.txt
+├── results/
+│   ├── recall_comparison.png
+│   └── accuracy_comparison.png
+└── README.md
 ```
 
 ---
 
-## 🎯 Key Takeaways
+## 🔮 Future Work
 
-* Random Forest and SVM achieved **perfect recall**
-* Feature importance analysis confirmed medical relevance
-* SHAP provided interpretable insights into model decisions
-* Recall-based optimization is crucial for healthcare ML problems
+* Add **model explainability techniques** (e.g., SHAP) to interpret feature importance
+* Explore additional ensemble models
+* Perform cross-dataset validation
 
 ---
 
-## 👨‍🎓 Author
+## 👤 Author
 
 **Madhav Takkar**
-B.Tech Biotechnology | Aspiring Bioinformatics Professional
-
----
-
-## 📜 License
-
-This project is for **educational and academic use**.
-
----
+B.Tech Biotechnology
+Machine Learning & Bioinformatics Enthusiast
 
 
